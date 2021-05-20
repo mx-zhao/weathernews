@@ -43,7 +43,6 @@ function draw() {
   textAlign(LEFT, TOP);
   imageMode(CENTER);
   
-
   if(label == 'Background Noise'){
     textSize(12);
     textAlign(CENTER);
@@ -81,14 +80,6 @@ function draw() {
     date = '2020/06/' + floor(random(2, 30));
     sec = 0;
   }
-  else if(label == 'drizzle' || 'fog' ){
-    rm.addText(txtLow);
-    sentences = rm.generate(25);
-    img = imgLow;
-    title = 'Freezing drizzle advisory in effect as roads and sidewalks become icy: Environment Canada';
-    date = '2020/12/' + floor(random(2, 30));
-    sec = 0;
-  }
   else if(label == 'tornado' || label == 'hurricane' ){
     rm.addText(txtHurricane);
     sentences = rm.generate(25);
@@ -113,11 +104,18 @@ function draw() {
     date = '2020/07/' + floor(random(2, 30));
     sec = 0;
   }
+  else if(label == 'drizzle' || 'fog' ){
+    rm.addText(txtLow);
+    sentences = rm.generate(25);
+    img = imgLow;
+    title = 'Freezing drizzle advisory in effect as roads and sidewalks become icy: Environment Canada';
+    date = '2020/12/' + floor(random(2, 30));
+    sec = 0;
+  }
   else if(label == 'loading...'){
-    fill(250);
-    rect(0, 0, width, height);
-  }  
-  //console.log(label);
+    text(' ', 0, 0);
+  }
+  console.log(img.name);
   
   fill(50);  
   textSize(32);
@@ -128,22 +126,19 @@ function draw() {
   textSize(12);
   textAlign(LEFT, TOP);
   text(date, 120, 600);
-  image(img, width/2, 100, 800, 500);
+  image(img, width/2, 200, 800, 500);
   fill(100);
   textSize(18);
   textLeading(36);
   text('       ' + sentences, 120, 650, 750, height);
   
   
-  for (let i = 0; i < 30 - sec; i++){
-    
+  for (let i = 0; i < 36 - sec; i++){
     fill(250);
     noStroke();
-    rect(100, (30 - i) * 36 + 614, 800, 34);
+    rect(100, (36 - i) * 36 + 614, 800, 34);
   }  
-  
   sec ++;
-  
 }
 
 function gotResult(error, results) {
