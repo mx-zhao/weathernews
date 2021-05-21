@@ -46,7 +46,7 @@ function draw() {
   if(label == 'Background Noise'){
     textSize(12);
     textAlign(CENTER);
-    text('Tell me the weather', width / 2, 600); 
+    text(' ', width / 2, 600); 
   }
   else if(label == 'sunny' || label == 'cloudy' ){
     rm.addText(txtSun);
