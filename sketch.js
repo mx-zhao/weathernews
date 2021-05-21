@@ -9,7 +9,9 @@ let soundModel =
 'https://teachablemachine.withgoogle.com/models/zJ6Epklry/';
 
 function preload() {
+  
   classifier = ml5.soundClassifier(soundModel + 'model.json');
+  
   txtStorm = loadStrings("storm.txt");
   txtSun = loadStrings("sun.txt");
   txtRain = loadStrings("rain.txt");
@@ -48,6 +50,7 @@ function draw() {
     textAlign(CENTER);
     text(' ', width / 2, 600); 
   }
+  
   else if(label == 'sunny' || label == 'cloudy' ){
     rm.addText(txtSun);
     sentences = rm.generate(25);
@@ -56,6 +59,7 @@ function draw() {
     date = '2020/07/' + floor(random(2, 30));
     sec = 0;
   }
+  
   else if(label == 'rainy' || label == 'overcast' ){
     rm.addText(txtRain);
     sentences = rm.generate(25);
@@ -64,6 +68,7 @@ function draw() {
     date = '2020/03/' + floor(random(2, 30));
     sec = 0;
   }
+  
   else if(label == 'snowy'){
     rm.addText(txtSnow);
     sentences = rm.generate(25);
@@ -72,6 +77,7 @@ function draw() {
     date = '2020/01/' + floor(random(2, 30));
     sec = 0;
   }
+  
   else if(label == 'stormy' || label == 'thunder' ){
     rm.addText(txtStorm);
     sentences = rm.generate(25);
@@ -80,6 +86,7 @@ function draw() {
     date = '2020/06/' + floor(random(2, 30));
     sec = 0;
   }
+  
   else if(label == 'tornado' || label == 'hurricane' ){
     rm.addText(txtHurricane);
     sentences = rm.generate(25);
@@ -88,6 +95,7 @@ function draw() {
     date = '2020/08/' + floor(random(2, 30));
     sec = 0;
   }
+  
   else if(label == 'sandstorm' ){
     rm.addText(txtPollution);
     sentences = rm.generate(25);
@@ -96,6 +104,7 @@ function draw() {
     date = '2020/04/' + floor(random(2, 30));
     sec = 0;
   }
+  
   else if(label == 'typhoon' ){
     rm.addText(txtTyphoon);
     sentences = rm.generate(25);
@@ -104,6 +113,7 @@ function draw() {
     date = '2020/07/' + floor(random(2, 30));
     sec = 0;
   }
+  
   else if(label == 'drizzle' || 'fog' ){
     rm.addText(txtLow);
     sentences = rm.generate(25);
@@ -112,11 +122,11 @@ function draw() {
     date = '2020/12/' + floor(random(2, 30));
     sec = 0;
   }
+  
   else if(label == 'loading...'){
     text(' ', 0, 0);
   }
-  console.log(img.name);
-  
+    
   fill(50);  
   textSize(32);
   textAlign(LEFT, TOP);
@@ -141,15 +151,18 @@ function draw() {
   sec ++;
 }
 
+
 function gotResult(error, results) {
   if (error) {
     console.error(error);
     return;
   }
+  
   else{
     let confidence = results[0].confidence;
     if(confidence > 0.75){
       label = results[0].label;
     }
   }
+  
 }
